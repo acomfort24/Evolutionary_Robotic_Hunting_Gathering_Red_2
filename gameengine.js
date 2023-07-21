@@ -117,6 +117,16 @@ class GameEngine {
         if (isNewGeneration) {
             this.population.redistributeFoodAndPoison();
 
+            this.population.worlds.forEach((world) => {
+                let windStrength = document.getElementById("wind_strength").value;
+                let worldWindX = Math.random() * 2 * windStrength - windStrength;
+                let worldWindY = Math.random() * 2 * windStrength - windStrength;
+                world.agents.forEach((agent) => {
+                    agent.windX = worldWindX;
+                    agent.windY = worldWindY;
+                });
+            });
+            
             if (params.FOOD_PERIODIC_REPOP) {
                 this.population.checkFoodLevels(false);
             }

@@ -18,11 +18,14 @@ class DataDisplay {
         if (params.SAVE_TO_DB) {
             ctx.strokeText(`Trial: ${params.SIM_CURR_TRIAL}`, 10, 90);
         }
-        ctx.textAlign = "center";
+        
         let world = this.game.population.worlds.get(this.worldId);
-
+        ctx.strokeText(`Wind X: ${world.agents[0].windX.toFixed(2)}`, 10, 90);
+        ctx.strokeText(`Wind Y: ${world.agents[0].windY.toFixed(2)}`, 10, 120);
+        ctx.textAlign = "center";
         ctx.strokeText(`World: ${this.worldId}`, params.CANVAS_SIZE / 2, 30);
         ctx.strokeText(`Agent Count: ${this.game.population.countAlives(this.worldId)}`, params.CANVAS_SIZE / 2, 60);
+        
 
         //Displaying Species list
         if (params.AGENT_PER_WORLD !== 0 || params.SPLIT_SPECIES) {

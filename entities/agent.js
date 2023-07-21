@@ -51,7 +51,9 @@ class Agent {
         this.neuralNet = new NeuralNet(this.genome); // create a new neural network corresponding to the previously assigned Genome
         this.activateAgent(); // set the Agent's energy to the statically defined start energy
         this.updateDiameter(); // how wide the agent's circle is drawn
-        this.wheelRadius = 1; // an agent is more or less structured like a Roomba vacuum robot, and this is the radius of one of its 2 wheels
+        this.wheelRadius = 1; // an agent is more or less structured like a Roomba vacuum robot, and this is the radius of one of its 2 wheel
+        this.windX = 0;
+        this.windY = 0;
 
         this.resetCalorieCounts(); // resets the Agent's good and bad calories eaten
         this.age = 0; // all Agents start at age 0
@@ -472,7 +474,6 @@ class Agent {
     update() {
         this.totalTicks++;
         let oldPos = { x: this.x, y: this.y }; // note where we are before moving
-
         let spottedNeighbors = [];
 
         let input = []; // the input to the neural network
@@ -511,7 +512,7 @@ class Agent {
             }
         });
 
-        /** sorts the spotted neighbors in increasing order of proxomity */
+        /** sorts the spotted neighbors in increasing order of proximity */
         spottedNeighbors.sort((entity1, entity2) => distance(entity1.BC.center, this.BC.center) - distance(entity2.BC.center, this.BC.center));
 
         //Determine closest food for fitness function
@@ -579,7 +580,7 @@ class Agent {
                 this.game.population.currentLeftWheelHist.data[slot][determineBucket(output[0], -1, 1)]++;
                 this.game.population.currentRightWheelHist.data[slot][determineBucket(output[1], -1, 1)]++;
             }
-
+    
             if (params.AGENT_BITING) {
                 this.biting = output[2] >= 0;
                 this.totalOutputs[2] += output[2];
@@ -596,6 +597,11 @@ class Agent {
         let dy = (this.wheelRadius / 2) * this.maxVelocity * (this.rightWheel + this.leftWheel) * Math.sin(this.heading);
         this.x += dx;
         this.y += dy;
+        if (this.isActive) {
+            this.x += this.windX;
+            this.y += this.windY;
+        }
+
         this.heading += dh;
 
         this.speed = Math.sqrt(dx ** 2 + dy ** 2);

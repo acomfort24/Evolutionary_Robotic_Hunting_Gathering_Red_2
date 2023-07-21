@@ -614,10 +614,17 @@ class PopulationManager {
             PopulationManager.SPECIES_CREATED++;
         }
 
+        //Creating wind for initial species creation
+        let windStrength = document.getElementById("wind_strength").value;
+        let worldWindX = Math.random() * 2 * windStrength - windStrength;
+        let worldWindY = Math.random() * 2 * windStrength - windStrength;
+
         for (let i = 0; i < numberOfAgentsSpawn; i++) { // add agents
             let agent = new Agent(this.game, params.CANVAS_SIZE / 2, params.CANVAS_SIZE / 2);
             agent.speciesId = PopulationManager.SPECIES_ID;
             agent.worldId = worldId;
+            agent.windX = worldWindX;
+            agent.windY = worldWindY;
             PopulationManager.SPECIES_MEMBERS.get(PopulationManager.SPECIES_ID).push(agent);
             this.worlds.get(worldId).agents.push(agent);
         }

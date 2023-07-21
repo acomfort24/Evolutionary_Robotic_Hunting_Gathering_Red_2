@@ -52,7 +52,7 @@ class World {
                 this.poison[i].update();
             }
         }
-        for (let i = 0; i < this.agents.length; i++) {
+        for (let i = 0; i < this.agents.length; i++) { 
             if (!this.agents[i].removeFromWorld) {
                 this.agents[i].update();
             }
@@ -318,7 +318,7 @@ class World {
         let prevX = halfSize, prevY = halfSize;
 
         shuffleArray(this.agents).forEach(agent => {
-            //Assign their food hiercarchy index based on how many agents per world
+            //Assign their food hierarchy index based on how many agents per world
             //Spread the food hierarchy index accress the whole agent population
             if (params.HUNTING_MODE === "hierarchy_spectrum") {
                 agent.foodHierarchyIndex = foodHierarchy.index;
