@@ -20,8 +20,8 @@ class DataDisplay {
         }
         
         let world = this.game.population.worlds.get(this.worldId);
-        ctx.strokeText(`Wind X: ${world.agents[0].windX.toFixed(2)}`, 10, 90);
-        ctx.strokeText(`Wind Y: ${world.agents[0].windY.toFixed(2)}`, 10, 120);
+        ctx.strokeText(`Wind X: ${world.agents[0].windX.toFixed(2)}`, 10, 120);
+        ctx.strokeText(`Wind Y: ${world.agents[0].windY.toFixed(2)}`, 10, 150);
         ctx.textAlign = "center";
         ctx.strokeText(`World: ${this.worldId}`, params.CANVAS_SIZE / 2, 30);
         ctx.strokeText(`Agent Count: ${this.game.population.countAlives(this.worldId)}`, params.CANVAS_SIZE / 2, 60);

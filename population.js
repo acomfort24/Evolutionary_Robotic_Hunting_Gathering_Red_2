@@ -1369,15 +1369,6 @@ class PopulationManager {
                 data[attribute] = newCollection;
             });
 
-            var wind = document.getElementById("wind-settings");
-            if (wind.value == "1") {
-                data[trialType] = "control";
-            } else if (wind.value == "2") {
-                data[trialType] = "strong";
-            } else if (wind.value == "3") {
-                data[trialType] = "variable";
-            }
-
             //Sending data to data base
             if (params.SAVE_TO_DB) {
                 logData(data, params.DB, params.DB_COLLECTION);
