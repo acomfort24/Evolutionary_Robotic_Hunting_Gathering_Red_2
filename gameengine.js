@@ -118,9 +118,17 @@ class GameEngine {
             this.population.redistributeFoodAndPoison();
 
             this.population.worlds.forEach((world) => {
-                let windStrength = document.getElementById("wind_strength").value;
-                let worldWindX = Math.random() * 2 * windStrength - windStrength;
-                let worldWindY = Math.random() * 2 * windStrength - windStrength;
+                let minWindStrength = parseFloat(document.getElementById("min-wind-strength").value);
+                let maxWindStrength = parseFloat(document.getElementById("max-wind-strength").value);
+                let worldWindX = Math.random() * (maxWindStrength - minWindStrength) + minWindStrength
+                let worldWindY = Math.random() * (maxWindStrength - minWindStrength) + minWindStrength;
+                if (Math.random() < 0.5) {
+                    worldWindX *= -1;
+                }
+                if (Math.random() < 0.5) {
+                    worldWindY *= -1;
+                } 
+
                 world.agents.forEach((agent) => {
                     agent.windX = worldWindX;
                     agent.windY = worldWindY;

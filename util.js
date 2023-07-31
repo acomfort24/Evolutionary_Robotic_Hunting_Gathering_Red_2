@@ -1,9 +1,9 @@
 /** Global Parameters Object */
 const params = {
     CANVAS_SIZE: 1000,
-    DB: "testDB",
-    DB_COLLECTION: "NEATtests",
-    GEN_TO_SAVE: 40,
+    DB: "tcss435",
+    DB_COLLECTION: "red2",
+    GEN_TO_SAVE: 400,
     GENOME_DB: "test",
     GENOME_DB_COLLECTION: "NEATGenomeTests1",
     AUTO_SAVE_GENOME: false,
@@ -297,6 +297,7 @@ const logData = (data, dataBase, dbCollection, extraElements = false) => {
             ...extraElements
         }
     }
+    
     let payload = {
         db: dataBase,
         collection: dbCollection,

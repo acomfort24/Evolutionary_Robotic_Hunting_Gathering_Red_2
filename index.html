@@ -151,17 +151,17 @@
             <input type="checkbox" id="save_to_db">
             <br>
             <label for="db"> Database Name: </label>
-            <input type="text" id="db" value="testDB">
+            <input type="text" id="db" value="tcss435">
             <br>
             <label for="db_collection"> Collection Name: </label>
-            <input type="text" id="db_collection" value="NEATtests">
+            <input type="text" id="db_collection" value="red2">
 
             <br>
             <label for="gen_to_save"> Generation to Save to DB: </label>
-            <input type="text" id="gen_to_save" value="40">
+            <input type="text" id="gen_to_save" value="400">
             <br>
             <label for="sim_trial_num"> Simulation Trials </label>
-            <input type="text" id="sim_trial_num" value=3>
+            <input type="text" id="sim_trial_num" value=50>
             <br>
             <button type="button" id="db_download_data" style="background-color: red; color:white;"> Download Data
             </button>
@@ -387,8 +387,20 @@
     <div class="container" style="border: 2px solid black; width: fit-content;">
         <div>
             <h1><strong>Wind Settings:</strong></h1>
+            <div id="min-wind">
+                Minimum Wind Strength: <input type="text" id="min-wind-strength" disabled="disabled" value="0">
+            </div>
+            <div id="max-wind">
+                Maximum Wind Strength: <input type="text" id="max-wind-strength" disabled="disabled" value="0">
+            </div>
+            <br>
             <div>
-                Max Wind Strength: <input type="text" id="wind_strength" value="1">
+                Wind Settings: 
+                <select id="wind-settings">
+                    <option value="1">No Wind</option>
+                    <option value="2">Strong Winds</option>
+                    <option value="3">Variable Winds</option>
+                </select>
             </div>
             <br>
         </div>
@@ -459,6 +471,24 @@
         -->
 
     </div>
+
+    <script>
+        var wind = document.getElementById("wind-settings");
+        var minWind = document.getElementById("min-wind-strength");
+        var maxWind = document.getElementById("max-wind-strength");
+        wind.addEventListener("click", function() {
+            if (wind.value == "1") {
+                minWind.value = 0;
+                maxWind.value = 0;
+            } else if (wind.value == "2") {
+                minWind.value = 1;
+                maxWind.value = 1.5;
+            } else if (wind.value == "3") {
+                minWind.value = 0;
+                maxWind.value = 1.5;
+            }
+        });
+    </script>
 
 </body>
 

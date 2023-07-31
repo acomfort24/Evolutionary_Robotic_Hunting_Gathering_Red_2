@@ -615,9 +615,16 @@ class PopulationManager {
         }
 
         //Creating wind for initial species creation
-        let windStrength = document.getElementById("wind_strength").value;
-        let worldWindX = Math.random() * 2 * windStrength - windStrength;
-        let worldWindY = Math.random() * 2 * windStrength - windStrength;
+        let minWindStrength = parseFloat(document.getElementById("min-wind-strength").value);
+        let maxWindStrength = parseFloat(document.getElementById("max-wind-strength").value);
+        let worldWindX = Math.random() * (maxWindStrength - minWindStrength) + minWindStrength
+        let worldWindY = Math.random() * (maxWindStrength - minWindStrength) + minWindStrength;
+        if (Math.random() < 0.5) {
+            worldWindX *= -1;
+        }
+        if (Math.random() < 0.5) {
+            worldWindY *= -1;
+        }
 
         for (let i = 0; i < numberOfAgentsSpawn; i++) { // add agents
             let agent = new Agent(this.game, params.CANVAS_SIZE / 2, params.CANVAS_SIZE / 2);
@@ -1361,6 +1368,15 @@ class PopulationManager {
                 newCollection = newCollection.slice(0, newCollection.length - 1);
                 data[attribute] = newCollection;
             });
+
+            var wind = document.getElementById("wind-settings");
+            if (wind.value == "1") {
+                data[trialType] = "control";
+            } else if (wind.value == "2") {
+                data[trialType] = "strong";
+            } else if (wind.value == "3") {
+                data[trialType] = "variable";
+            }
 
             //Sending data to data base
             if (params.SAVE_TO_DB) {
