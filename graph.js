@@ -1,7 +1,7 @@
 let socket = null;
 let downloader = 0;
 if (window.io) {
-	socket = io.connect('http://73.225.31.4:8888');
+	socket = io.connect('https://73.225.31.4:8888');
 	console.log("Database connected!");
 }
 
